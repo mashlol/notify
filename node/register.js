@@ -7,5 +7,5 @@ var getUserHome = function() {
 module.exports = function(key) {
   // TODO: check if the key was valid before saving it
   fs.writeFileSync(getUserHome() + '/.notifyreg', key);
-  console.log('Your registration code has been saved to ~/.notifyreg');
+  console.log('[notify] Your registration code has been saved to ~/.notifyreg');
 };
