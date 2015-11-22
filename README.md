@@ -1,4 +1,4 @@
-![notify](http://i.imgur.com/U2ph4fZ.png)
+![notify](http://i.imgur.com/OYoRBS3.png)
 
 # Installation
 notify is written with node, so you can install with npm.
