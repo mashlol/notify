@@ -17,7 +17,7 @@ notify -r myKey
 After registering, you can use notify as follows:
 
 ```sh
-someLongRunningCommand || notify
+someLongRunningCommand ; notify
 ```
 
 You will receive a push notification to your phone when the command has completed, regardless of whether or not it was successful.
