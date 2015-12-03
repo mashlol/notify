@@ -8,6 +8,7 @@ var notify = require('./notify');
 
 program.version(packageJson.version)
   .option('-r, --register [key]', 'Register')
+  .option('-t --text [text]', 'Text for the notification')
   .parse(process.argv);
 
 // For registration
@@ -16,4 +17,4 @@ if (program.register) {
   return;
 }
 
-notify();
+notify(program.text);

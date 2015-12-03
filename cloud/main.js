@@ -1,11 +1,15 @@
 Parse.Cloud.define('notify', function(request, response) {
-  console.log(request.params);
   var key = request.params.key;
 
+  var query = new Parse.Query(Parse.Installation);
+  query.equalTo('objectId', key);
+
+  var text = request.params.text || 'Your command is complete.';
+
   Parse.Push.send({
-    channels: [key],
+    where: query,
     data: {
-      alert: 'Your command is done.',
+      alert: text,
     },
   }).then(function() {
     response.success('Notification sent');
