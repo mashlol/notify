@@ -21,3 +21,10 @@ someLongRunningCommand ; notify
 ```
 
 You will receive a push notification to your phone when the command has completed, regardless of whether or not it was successful.
+
+You can also specify what the notification will say, like this:
+
+```
+notify --text "My message"
+notify -t "Some cool message"
+```
