@@ -13,11 +13,15 @@ var getUserHome = function() {
 
 module.exports = function(text) {
   // Fetch registration token
-  var key = fs.readFileSync(getUserHome() + '/.notifyreg', {encoding: 'utf8'});
-
-  Parse.Cloud.run('notify', {key: key, text: text}).then(function() {
-    console.log('[notify] Successfully sent notification.');
-  }, function(error) {
-    console.log('[notify] Encountered an error:', error);
-  });
+  var keys = fs.readFileSync(getUserHome() + '/.notifyreg', {encoding: 'utf8'}).toString().split("\n");
+  for(i in keys) {
+    key=keys[i]
+    if (key.length>1) {
+     Parse.Cloud.run('notify', {key: key, text: text}).then(function() {
+      console.log('[notify] Successfully sent notification.');
+     }, function(error) {
+      console.log('[notify] Encountered an error:', error);
+     });
+	};
+  };
 };
