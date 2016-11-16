@@ -1,11 +1,9 @@
 var fs = require('fs');
 
-var getUserHome = function() {
-  return process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
-};
+var Utils = require('./utils');
 
 module.exports = function(key) {
-  // TODO: check if the key was valid before saving it
-  fs.writeFileSync(getUserHome() + '/.notifyreg', key);
+  var existingFile = Utils.getRegFile();
+  Utils.writeToRegFile(existingFile + key + '\n');
   console.log('[notify] Your registration code has been saved to ~/.notifyreg');
 };

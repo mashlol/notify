@@ -1,27 +1,19 @@
 var fs = require('fs');
 var Parse = require('parse/node');
 
-// Public parse keys
-Parse.initialize(
-  'HQrMLZDevpTv2J1raSC6KATvlpNqqePPecUE0EgG',
-  'bBHPgeYLFkAx3xb95J1P4g2LsGroF5pEfzLYznw0'
-);
-
-var getUserHome = function() {
-  return process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
-};
+var Utils = require('./utils');
 
 module.exports = function(text) {
-  // Fetch registration token
-  var keys = fs.readFileSync(getUserHome() + '/.notifyreg', {encoding: 'utf8'}).toString().split("\n");
-  for(i in keys) {
-    key=keys[i]
-    if (key.length>1) {
-     Parse.Cloud.run('notify', {key: key, text: text}).then(function() {
-      console.log('[notify] Successfully sent notification.');
-     }, function(error) {
-      console.log('[notify] Encountered an error:', error);
-     });
-	};
-  };
+  var keys = Utils.getRegFile().split(/\n+/).filter(key => key);
+  if (!keys.length) {
+    console.log(
+      '[notify] No keys have been registered.' +
+      ' Register a key with `notify -r {key}`.'
+    );
+    return;
+  }
+  for (var key of keys) {
+    // TODO actually make the call to the hosted service
+    console.log('[notify] Notifying ' + key);
+  }
 };
