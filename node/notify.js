@@ -1,9 +1,12 @@
 var fs = require('fs');
 var Parse = require('parse/node');
+var restler = require('restler');
 
 var Utils = require('./utils');
 
-module.exports = function(text) {
+var SERVICE_HOSTNAME = 'https://appnotify.herokuapp.com/notify';
+
+module.exports = function(text, title) {
   var keys = Utils.getRegFile().split(/\n+/).filter(key => key);
   if (!keys.length) {
     console.log(
@@ -13,7 +16,17 @@ module.exports = function(text) {
     return;
   }
   for (var key of keys) {
-    // TODO actually make the call to the hosted service
     console.log('[notify] Notifying ' + key);
+    restler.get(SERVICE_HOSTNAME, {
+      query: {
+        to: key,
+        text: text,
+        title: title,
+      },
+    }).on('complete', function(result, response) {
+      if (result.success) {
+        console.log('[notify] Successfully notifed ' + key);
+      }
+    });
   }
 };

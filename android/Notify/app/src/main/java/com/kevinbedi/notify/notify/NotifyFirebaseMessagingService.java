@@ -17,6 +17,7 @@ public class NotifyFirebaseMessagingService extends FirebaseMessagingService {
                         .setSmallIcon(R.drawable.ic_paperplane)
                         .setContentTitle(remoteMessage.getNotification().getTitle())
                         .setContentText(remoteMessage.getNotification().getBody())
+                        .setVibrate(new long[] { 150, 300, 150, 600})
                         .setAutoCancel(true)
                         .build());
         super.onMessageReceived(remoteMessage);

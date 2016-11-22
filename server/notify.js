@@ -21,6 +21,7 @@ module.exports = function(params, res) {
 
   if (!to) {
     res.json({success: false, error: 'No "to" param specified.'});
+    return;
   }
 
   var db = admin.database();
@@ -29,6 +30,7 @@ module.exports = function(params, res) {
 
     if (!to) {
       res.json({success: false, error: 'Invalid "to" param specified.'});
+      return;
     }
 
     restler.post(FIREBASE_SEND_URL, {
