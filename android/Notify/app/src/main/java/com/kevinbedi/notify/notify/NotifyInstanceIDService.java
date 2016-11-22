@@ -6,6 +6,6 @@ public class NotifyInstanceIDService extends FirebaseInstanceIdService {
 
     @Override
     public void onTokenRefresh() {
-        GcmTokenManager.storeToken();
+        GcmTokenManager.storeToken(this);
     }
 }

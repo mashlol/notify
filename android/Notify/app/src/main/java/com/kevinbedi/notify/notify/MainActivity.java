@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements GcmTokenManager.Listener {
 
     private static final String INSTRUCTIONS = "To register, type:\n$ notify -r %s\n\n" +
             "After registering, you can use notify to send push notifications to your phone.\n\n" +
@@ -23,8 +23,7 @@ public class MainActivity extends AppCompatActivity {
         public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
             FirebaseUser user = firebaseAuth.getCurrentUser();
             if (user != null) {
-                updateText(user.getUid());
-                GcmTokenManager.storeToken();
+                GcmTokenManager.storeToken(MainActivity.this);
             } else {
                 signIn();
             }
@@ -42,13 +41,15 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        GcmTokenManager.setListener(this);
+
         mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
         mIdContainer = findViewById(R.id.id_container);
 
         mAuth.addAuthStateListener(mAuthListener);
 
         if (mAuth.getCurrentUser() != null) {
-            updateText(mAuth.getCurrentUser().getUid());
+            updateText();
         } else {
             signIn();
         }
@@ -58,20 +59,28 @@ public class MainActivity extends AppCompatActivity {
     public void onDestroy() {
         super.onDestroy();
         mAuth.removeAuthStateListener(mAuthListener);
+        GcmTokenManager.removeListener();
     }
 
     private void signIn() {
         mAuth.signInAnonymously();
     }
 
-    private void updateText(String id) {
+    private void updateText() {
+        String token = GcmTokenManager.getExistingToken(this);
+
         mIdContainer.setVisibility(View.VISIBLE);
         mProgressBar.setVisibility(View.GONE);
 
         TextView idTextView = (TextView) findViewById(R.id.identifier);
         TextView instructionsTextView = (TextView) findViewById(R.id.instructions);
 
-        idTextView.setText(id);
-        instructionsTextView.setText(String.format(INSTRUCTIONS, id));
+        idTextView.setText(token);
+        instructionsTextView.setText(String.format(INSTRUCTIONS, token));
+    }
+
+    @Override
+    public void onTokenGenerated() {
+        updateText();
     }
 }
