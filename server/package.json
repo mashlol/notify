@@ -1,0 +1,22 @@
+{
+  "author": "Kevin Bedi",
+  "name": "notify-server",
+  "description": "Back-end server for notify-cli",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mashlol/notify.git"
+  },
+  "main": "./server.js",
+  "dependencies": {
+    "express": "^4.14.0",
+    "restler": "^3.4.0"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  },
+  "scripts": {},
+  "license": "MIT"
+}
