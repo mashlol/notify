@@ -1,3 +1,5 @@
 node_modules/
 server/config.json
 server/serviceAccountKey.json
+keystore.jks
+app-release.apk

@@ -1,4 +1,4 @@
-package com.kevinbedi.notify.notify;
+package com.kevinbedi.notify;
 
 import com.google.firebase.iid.FirebaseInstanceIdService;
 

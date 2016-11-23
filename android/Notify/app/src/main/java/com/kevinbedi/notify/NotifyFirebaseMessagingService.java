@@ -1,4 +1,4 @@
-package com.kevinbedi.notify.notify;
+package com.kevinbedi.notify;
 
 import android.app.NotificationManager;
 import android.support.v4.app.NotificationCompat;
