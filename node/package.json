@@ -2,7 +2,7 @@
   "author": "Kevin Bedi",
   "name": "notify-cli",
   "description": "Utility to send a push notification to yourself with the command line",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "repository": {
     "type": "git",
     "url": "git://github.com/mashlol/notify.git"
@@ -12,7 +12,8 @@
     "notify": "./app.js"
   },
   "dependencies": {
-    "commander": "^2.9.0"
+    "commander": "^2.9.0",
+    "restler": "^3.4.0"
   },
   "devDependencies": {},
   "optionalDependencies": {},
