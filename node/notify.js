@@ -1,5 +1,4 @@
 var fs = require('fs');
-var Parse = require('parse/node');
 var restler = require('restler');
 
 var Utils = require('./utils');
