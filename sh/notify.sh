@@ -10,7 +10,7 @@ do
       shift
       ;;
       -t|--text)
-      TEXT="$2"
+      TEXT=$(sed 's/ /%20/g' <<< "$2")
       shift
       ;;
       *)
