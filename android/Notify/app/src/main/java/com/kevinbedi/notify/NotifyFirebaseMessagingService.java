@@ -6,9 +6,12 @@ import android.support.v4.app.NotificationCompat;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import static android.app.Notification.PRIORITY_MAX;
+
 public class NotifyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
+
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         manager.notify(
                 remoteMessage.getMessageId(),
@@ -18,6 +21,7 @@ public class NotifyFirebaseMessagingService extends FirebaseMessagingService {
                         .setContentTitle(remoteMessage.getNotification().getTitle())
                         .setContentText(remoteMessage.getNotification().getBody())
                         .setVibrate(new long[] { 150, 300, 150, 600})
+                        .setPriority(PRIORITY_MAX)
                         .setAutoCancel(true)
                         .build());
         super.onMessageReceived(remoteMessage);
