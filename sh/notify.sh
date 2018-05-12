@@ -27,7 +27,7 @@ then
 else
   KEY=`cat ~/.notifyreg`
   curl \
-  "https://appnotify.herokuapp.com/notify?to=${KEY}&text=${TEXT}" \
+  "https://us-central1-notify-b7652.cloudfunctions.net/sendNotification?to=${KEY}&text=${TEXT}" \
   > /dev/null
 
   echo "[notify] Successfully sent notification."
