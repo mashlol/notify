@@ -6,8 +6,8 @@ android {
         applicationId "com.kevinbedi.notify"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 5
-        versionName "1.4"
+        versionCode 3
+        versionName "1.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
