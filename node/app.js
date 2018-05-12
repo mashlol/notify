@@ -11,6 +11,7 @@ program.version(packageJson.version)
   .option('-r, --register [key]', 'Register')
   .option('-u, --unregister [key]', 'Unregister')
   .option('-t --text [text]', 'Text for the notification')
+  .option('-i --title [title]', 'Title for the notification')
   .parse(process.argv);
 
 // For registration
@@ -24,4 +25,4 @@ if (program.unregister) {
   return;
 }
 
-notify(program.text);
+notify(program.text, program.title);
