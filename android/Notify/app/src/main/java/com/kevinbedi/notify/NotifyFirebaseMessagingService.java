@@ -40,6 +40,7 @@ public class NotifyFirebaseMessagingService extends FirebaseMessagingService {
                         .setSmallIcon(R.drawable.ic_paperplane)
                         .setContentTitle(title)
                         .setContentText(text)
+                        .setStyle(new NotificationCompat.BigTextStyle().bigText(text))
                         .setVibrate(new long[] { 150, 300, 150, 600})
                         .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                         .setPriority(PRIORITY_MAX)
