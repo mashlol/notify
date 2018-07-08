@@ -3,8 +3,9 @@ package com.kevinbedi.notify;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.media.RingtoneManager;
+import android.provider.Settings;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 
@@ -20,8 +21,12 @@ public class NotifyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        SharedPreferences prefs = getSharedPreferences(getString(R.string.settings_file), MODE_PRIVATE);
+        Boolean sound = prefs.getBoolean(getString(R.string.menu_sound), true);
+        Boolean vibration = prefs.getBoolean(getString(R.string.menu_vibration), true);
         String title = null;
         String text = null;
+
         if (remoteMessage.getNotification() != null) {
             title = remoteMessage.getNotification().getTitle();
             text = remoteMessage.getNotification().getBody();
@@ -41,8 +46,9 @@ public class NotifyFirebaseMessagingService extends FirebaseMessagingService {
                         .setContentTitle(title)
                         .setContentText(text)
                         .setStyle(new NotificationCompat.BigTextStyle().bigText(text))
-                        .setVibrate(new long[] { 150, 300, 150, 600})
-                        .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                        .setVibrate(vibration ? new long[]{150, 300, 150, 600} : new long[]{0L})
+                        .setSound(sound ? Settings.System.DEFAULT_NOTIFICATION_URI : null)
+                        .setLights(Color.BLUE, 1000, 500)
                         .setPriority(PRIORITY_MAX)
                         .setAutoCancel(true)
                         .build());
