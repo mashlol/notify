@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_main">
+    android:background="@drawable/background_main"
+    tools:context=".MainActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
     <ProgressBar
         android:id="@+id/progress_bar"
@@ -36,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"
-                android:text="notify"
+                android:text="@string/app_name_lower"
                 android:textColor="@android:color/white"
                 android:textSize="48sp" />
 
@@ -67,7 +76,7 @@
                 android:layout_marginRight="30dp"
                 android:fontFamily="sans-serif-medium"
                 android:padding="10dp"
-                android:text="YOUR TOKEN"
+                android:text="@string/your_token"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
 

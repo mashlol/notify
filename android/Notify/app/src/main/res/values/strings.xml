@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Notify</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name_lower">notify</string>
+    <string name="menu_sound">Sound</string>
+    <string name="menu_vibration">Vibration</string>
+    <string name="settings_file">Settings</string>
+    <string name="your_token">YOUR TOKEN</string>
 </resources>
