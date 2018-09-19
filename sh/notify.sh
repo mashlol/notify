@@ -26,7 +26,7 @@ then
   echo "${KEY}" > ~/.notifyreg
 else
   KEY=`cat ~/.notifyreg`
-  curl \
+  curl -g\
   "https://us-central1-notify-b7652.cloudfunctions.net/sendNotification?to=${KEY}&text=${TEXT}" \
   > /dev/null
 
