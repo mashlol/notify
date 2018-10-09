@@ -13,12 +13,14 @@ function usage()
     echo "options:"
     echo "  --register <token>, -r <token>    Store given token in token file"
     echo "  --text <text>, -t <text>          Text for the notification"
+    echo "  --title <title>, -i <title>       Title for the notification"
 }
 
-TEMP=$(getopt -o hr:t: --long help,register:,text: -n 'notify.sh' -- "$@")
+TEMP=$(getopt -o hr:t:i: --long help,register:,text:,title: -n 'notify.sh' -- "$@")
 eval set -- "$TEMP"
 
 TEXT=""
+TITLE=""
 
 while true; do
     case "$1" in
@@ -29,6 +31,10 @@ while true; do
             ;;
         -t|--text)
             TEXT=$2
+            shift 2
+            ;;
+        -i|--title)
+            TITLE=$2
             shift 2
             ;;
         -h|--help)
@@ -71,6 +77,7 @@ if curl -g -s -G \
     'https://us-central1-notify-b7652.cloudfunctions.net/sendNotification' \
     --data-urlencode "to=$TOKEN" \
     --data-urlencode "text=$TEXT" \
+    --data-urlencode "title=$TITLE" \
     >/dev/null 2>&1
 then
     echo "[notify] Successfully sent notification."
