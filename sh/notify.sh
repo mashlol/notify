@@ -8,7 +8,7 @@ function usage()
     echo
     echo "usage:"
     echo "  notify.sh --register <token>"
-    echo "  notify.sh --text <text>"
+    echo "  notify.sh [--title <title>] --text <text>"
     echo
     echo "options:"
     echo "  --register <token>, -r <token>    Store given token in token file"
