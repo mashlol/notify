@@ -1,6 +1,7 @@
 ![notify](http://i.imgur.com/OYoRBS3.png)
 
 [~~Play Store Link~~](https://play.google.com/store/apps/details?id=com.kevinbedi.notify) (currently unavailable)
+[F-Droid Link](https://f-droid.org/en/packages/com.kevinbedi.notify/)
 
 # Installation
 The notify CLI is written with node, so you can install it with npm:
