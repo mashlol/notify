@@ -106,6 +106,6 @@ public class GcmTokenManager {
 
     private static Character getRandomValidChar() {
         return VALID_TOKEN_CHARACTERS[
-                (int) Math.round(Math.random() * VALID_TOKEN_CHARACTERS.length)];
+                (int) Math.floor(Math.random() * VALID_TOKEN_CHARACTERS.length)];
     }
 }

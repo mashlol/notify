@@ -3,7 +3,7 @@ var restler = require('restler');
 
 var Utils = require('./utils');
 
-var SERVICE_HOSTNAME = 'https://appnotify.herokuapp.com/notify';
+var SERVICE_HOSTNAME = 'https://us-central1-notify-b7652.cloudfunctions.net/sendNotification';
 
 module.exports = function(text, title) {
   var keys = Utils.getRegFile().split(/\n+/).filter(key => key);
